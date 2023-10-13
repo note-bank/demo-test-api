@@ -3,10 +3,9 @@ services:
   jenkins:
     image: suanku-jenkins # 指定您自定义的Jenkins镜像名称
     container_name: suanku-jenkins-container
-    restart: always
+    restart: on-failure #如果容器以零退出状态正常停止，则不会自动重新启动。
     ports:
       - "8002:8080" # 映射Jenkins的Web界面端口
       - "50000:50000" # 映射Jenkins的slave代理端口
     volumes:
-      - ./data/suank-jenkins-data:/var/jenkins_home # 映射Jenkins的数据卷d
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/suank-jenkins-data:/var/jenkins_home # 映射Jenkins的数据卷
